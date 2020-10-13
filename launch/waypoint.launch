@@ -1,6 +1,0 @@
-<launch>
-	<node pkg="comp3431_starter" name="waypoint" type="comp3431_starter_waypoint" output="screen">
-		<rosparam>
-		</rosparam>
-	</node>
-</launch>

@@ -74,11 +74,7 @@ ADD_DEFINITIONS(-DQT_NO_KEYWORDS)
 
 ## Starter library with all common code
 add_library(comp3431_starter_library
-    src/beacon.cpp
-    #src/controlReceive.cpp
-    src/depth.cpp
     src/wallFollow.cpp
-    #src/waypoint.cpp
 )
 
 ## GUI Specific Libraries
@@ -89,22 +85,9 @@ add_library(comp3431_starter_library
 #)
 
 ## Declaring all Nodes
-add_executable(comp3431_starter_beacons
-    src/nodes/beacon_node.cpp
-)
-#add_executable(comp3431_starter_controls
-#    src/nodes/controls_node.cpp
-#)
-add_executable(comp3431_starter_depth
-    src/nodes/depth_node.cpp
-)
 add_executable(comp3431_starter_wallfollow
     src/nodes/wallFollow_node.cpp
 )
-
-# add_executable(comp3431_starter_waypoint
-#    src/nodes/waypoint_node.cpp
-#)
 
 # Calculates current robot pose
 add_executable(comp3431_starter_conversion 
@@ -126,9 +109,19 @@ add_executable(ar_tags
 	src/nodes/ar_node.cpp
 )
 
-# 
+# Set the start position of robot on launch with launch file.
 add_executable(init_pose 
 	src/nodes/init_pose_node.cpp
+)
+
+# transform robot_camera -> ar_tag
+add_executable(tf_ar_robot 
+	src/nodes/distance.cpp
+)
+
+# timestamped ar_tag (for syncing)
+add_executable(ar_tag_stamped 
+	src/nodes/ar_pose_marker_stamped.cpp
 )
 
 ## Specify libraries to link a library or executable target against
@@ -136,27 +129,12 @@ target_link_libraries(comp3431_starter_library
   ${catkin_LIBRARIES}
   ${OpenCV_LIBRARIES}
 )
-target_link_libraries(comp3431_starter_beacons
-  ${catkin_LIBRARIES}
-  ${OpenCV_LIBRARIES}
-  comp3431_starter_library
-)
-target_link_libraries(comp3431_starter_depth
-  ${catkin_LIBRARIES}
-  ${OpenCV_LIBRARIES}
-  comp3431_starter_library
-)
+
 target_link_libraries(comp3431_starter_wallfollow
   ${catkin_LIBRARIES}
   ${OpenCV_LIBRARIES}
   comp3431_starter_library
 )
-
-#target_link_libraries(comp3431_starter_waypoint
-#  ${catkin_LIBRARIES}
-#  ${OpenCV_LIBRARIES}
-#  comp3431_starter_library
-#)
 
 target_link_libraries(comp3431_starter_conversion
   ${catkin_LIBRARIES}
@@ -164,11 +142,6 @@ target_link_libraries(comp3431_starter_conversion
   comp3431_starter_library
 )
 
-#target_link_libraries(comp3431_starter_controls
-#  ${catkin_LIBRARIES}
-#  ${OpenCV_LIBRARIES}
-#  comp3431_starter_library
-#)
 #target_link_libraries(comp3431_starter_rviz_library
 #  ${catkin_LIBRARIES}
 #  ${OpenCV_LIBRARIES}
@@ -193,6 +166,18 @@ target_link_libraries(ar_tags
 )
 
 target_link_libraries(init_pose
+  ${catkin_LIBRARIES}
+  ${OpenCV_LIBRARIES}
+  comp3431_starter_library
+)
+
+target_link_libraries(tf_ar_robot
+  ${catkin_LIBRARIES}
+  ${OpenCV_LIBRARIES}
+  comp3431_starter_library
+)
+
+target_link_libraries(ar_tag_stamped
   ${catkin_LIBRARIES}
   ${OpenCV_LIBRARIES}
   comp3431_starter_library

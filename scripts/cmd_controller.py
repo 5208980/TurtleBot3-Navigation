@@ -83,7 +83,7 @@ if __name__ == "__main__":
 	rospy.init_node('command_controller_node')
 	init_odom_sub = message_filters.Subscriber("initialodom", Odometry)
 	odom_sub = message_filters.Subscriber("odom", Odometry)
-	cmd_sub = message_filters.Subscriber("/cmd", String)
+	# cmd_sub = message_filters.Subscriber("/cmd", String)
 	ts = message_filters.ApproximateTimeSynchronizer([init_odom_sub, odom_sub], 10, 10)
 	# ts = message_filters.TimeSynchronizer([init_odom_sub, odom_sub], 1)
   	ts.registerCallback(pose_check)

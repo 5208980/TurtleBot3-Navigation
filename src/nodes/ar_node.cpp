@@ -11,6 +11,8 @@ void ar_tags_callback(const ar_track_alvar_msgs::AlvarMarkers::ConstPtr &msg) {
 	if (!msg->markers.empty()) {
 		if(msg->markers[0].id >= 0 and msg->markers[0].id <= 11) {
 			ROS_INFO("Valid AR Tag");
+		} else {			
+			ROS_WARN_ONCE("Valid AR Tag");
 		}
 
 		// ar_marker = msg->markers[0];

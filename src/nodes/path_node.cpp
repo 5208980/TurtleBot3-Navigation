@@ -3,6 +3,7 @@
 #include <nav_msgs/Odometry.h>
 #include <geometry_msgs/PoseStamped.h>
 
+#define NODE    "Path Tracing Node ::"
 ros::Publisher path_pub;
 nav_msgs::Path path;
 
@@ -23,6 +24,7 @@ void path_trace_callback(const nav_msgs::Odometry::ConstPtr &odom) {
 
 int main(int argc, char** argv) {
 	ros::init(argc, argv, "path_node");
+	ROS_INFO("%s Spinning", NODE);
 	ros::NodeHandle n;
 
     ros::Subscriber odom_sub = n.subscribe("odom", 1, path_trace_callback);
