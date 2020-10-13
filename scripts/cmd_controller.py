@@ -28,14 +28,14 @@ from nav_msgs.msg import Odometry
 
 # GLOBAL
 cmd_pub = rospy.Publisher('/cmd', String, queue_size=10)
-threshold = 0.05
+threshold = 0.20
 
 # Used to handle whenever the robots starts. To ensure that the pose check doesn't affect the start of robot for 5 seconds.
 starting_up = False
 def start_up_handler():
 	global starting_up
 	starting_up = not starting_up
-	time.sleep(20)
+	time.sleep(45)
 	print("Swapped")
 	starting_up = not starting_up
 	sys.exit()

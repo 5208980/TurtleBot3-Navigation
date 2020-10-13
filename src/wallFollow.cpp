@@ -10,7 +10,7 @@
 #include <comp3431_starter/wallFollow.hpp>
 
 #define BASE_FRAME  "base_link"
-#define MAX_SIDE_LIMIT      0.30 // 0.50
+#define MAX_SIDE_LIMIT      0.50 // 0.50
 #define MIN_APPROACH_DIST   0.30 // 0.30
 #define MAX_APPROACH_DIST   0.50 // 0.50
 

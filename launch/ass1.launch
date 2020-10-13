@@ -22,23 +22,23 @@
 		 rosrun image_transport republish compressed in:=/raspicam_node/image raw out:=/raspicam_node/image/custom_raw
 	-->
 
-<!-- Used for turtlebot
+
 	<node name="republish" type="republish" pkg="image_transport" output="screen" args="compressed in:=/raspicam_node/image raw raw out:=/raspicam_node/image/custom_raw" />
--->	
+
 
 	<arg name="marker_size" default="20.0" />
 	<arg name="max_new_marker_error" default="0.08" />
 	<arg name="max_track_error" default="0.2" />
 	
-	<arg name="cam_image_topic" default="/camera/rgb/image_raw" />
+<!--	<arg name="cam_image_topic" default="/camera/rgb/image_raw" />
 	<arg name="cam_info_topic" default="/camera/rgb/camera_info" />
 	<arg name="output_frame" default="camera_rgb_optical_frame" />
+-->
 
-<!-- Used for turtlebot
 	<arg name="cam_image_topic" default="/raspicam_node/image/custom_raw" />
 	<arg name="cam_info_topic" default="/raspicam_node/camera_info" />
 	<arg name="output_frame" default="camera" />
--->
+
 
 	<node name="ar_track_alvar" pkg="ar_track_alvar" type="individualMarkersNoKinect" respawn="false" output="screen">
 		<param name="marker_size"           type="double" value="$(arg marker_size)" />

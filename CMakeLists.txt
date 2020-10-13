@@ -115,9 +115,9 @@ add_executable(init_pose
 )
 
 # transform robot_camera -> ar_tag
-add_executable(tf_ar_robot 
-	src/nodes/distance.cpp
-)
+#add_executable(tf_ar_robot 
+#	src/nodes/distance.cpp
+#)
 
 # timestamped ar_tag (for syncing)
 add_executable(ar_tag_stamped 
@@ -171,11 +171,11 @@ target_link_libraries(init_pose
   comp3431_starter_library
 )
 
-target_link_libraries(tf_ar_robot
-  ${catkin_LIBRARIES}
-  ${OpenCV_LIBRARIES}
-  comp3431_starter_library
-)
+#target_link_libraries(tf_ar_robot
+ # ${catkin_LIBRARIES}
+  #${OpenCV_LIBRARIES}
+  #comp3431_starter_library
+#)
 
 target_link_libraries(ar_tag_stamped
   ${catkin_LIBRARIES}
